@@ -1,6 +1,10 @@
 import os
 from flask import Flask, send_from_directory
 from flask_cors import CORS
+import sqlite3
+
+con = sqlite3.connect('door.db', check_same_thread=False)
+cur = con.cursor()
 
 app = Flask(__name__, static_folder='frontend/build')
 
