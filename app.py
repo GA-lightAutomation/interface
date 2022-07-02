@@ -4,6 +4,10 @@ from flask_cors import CORS
 
 app = Flask(__name__, static_folder='frontend/build')
 
+if __name__ == '__main__':
+    app.run(use_reloader=True, port=5000, threaded=True)
+
+CORS(app)
 # Serve React App
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -13,10 +17,6 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-
-if __name__ == '__main__':
-    app.run(use_reloader=True, port=5000, threaded=True)
-
-@app.route("/k")
+@app.route("/test")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return {"test":"Hello Gearbox Academy"}

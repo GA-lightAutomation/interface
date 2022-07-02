@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { baseURL } from './data';
+import React, { useEffect, useState } from 'react';
 
 function App() {
+
+  const [message, setMessage] = useState({})
+
+  useEffect(()=>{
+    fetch(baseURL + "/test").then((response) => response.json())
+    .then((data) => {
+      console.log("SUCCESS", data)
+      setMessage(data)
+    })
+    .catch((error) => console.log(error))
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +31,10 @@ function App() {
         >
           Learn React
         </a>
+        {/*Sample Importation of data*/}
+        <p>
+          Flask says  <strong>{ message.test }</strong>
+        </p>
       </header>
     </div>
   );
