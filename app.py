@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from flask_cors import CORS
 import sqlite3
 
@@ -22,5 +22,14 @@ def serve(path):
         return send_from_directory(app.static_folder, 'index.html')
 
 @app.route("/test")
-def hello_world():
+def test():
     return {"test":"Hello Gearbox Academy"}
+
+@app.route("/db")
+def testDB():
+    data = request.args
+    print(data)
+    texts = []
+    for row in cur.execute(f"SELECT * FROM {data.get('table')}"):
+        texts.append(row[0])
+    return {"db":texts}

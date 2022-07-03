@@ -1,5 +1,5 @@
 # Web Interface To Embedded system
-<img src="/static/flow.jpg">
+<img src="./static/flow.jpg">
 
 ## Setting Up Environment
 ### Tech Stacks

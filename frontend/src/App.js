@@ -5,16 +5,24 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
 
-  const [message, setMessage] = useState({})
+  const [message, setMessage] = useState({});
+  const [list, setList] = useState([]);
 
   useEffect(()=>{
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
-      console.log("SUCCESS", data)
-      setMessage(data)
+      console.log("SUCCESS", data);
+      setMessage(data);
     })
     .catch((error) => console.log(error))
   }, [])
+
+  fetch(baseURL + "/db").then((response) => response.json())
+    .then((data) => {
+      console.log("SUCCESS", data);
+      setList(data.db);
+    })
+    .catch((error) => console.log(error))
 
   return (
     <div className="App">
@@ -35,6 +43,14 @@ function App() {
         <p>
           Flask says  <strong>{ message.test }</strong>
         </p>
+        <p>Random text from DB:</p>
+        <ul>
+          {
+            list.map(
+              i=>(<li>{i}</li>)
+            )
+          }
+        </ul>
       </header>
     </div>
   );
