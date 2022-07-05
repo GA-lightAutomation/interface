@@ -9,7 +9,8 @@ cur = con.cursor()
 app = Flask(__name__, static_folder='frontend/build')
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, port=5000, threaded=True)
+    context = ('server.crt', 'server.key')#certificate and key files
+    app.run(use_reloader=True, port=5000, threaded=True,ssl_context=context)
 
 CORS(app)
 # Serve React App

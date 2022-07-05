@@ -17,7 +17,7 @@ function App() {
     .catch((error) => console.log(error))
   }, [])
 
-  fetch(baseURL + "/db").then((response) => response.json())
+  fetch(baseURL + "/db?table=test").then((response) => response.json())
     .then((data) => {
       console.log("SUCCESS", data);
       setList(data.db);
