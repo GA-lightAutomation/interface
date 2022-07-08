@@ -3,6 +3,15 @@ import './App.css';
 import { baseURL } from './data';
 import React, { useEffect, useState } from 'react';
 
+const request = new XMLHttpRequest();
+
+function postman(e,command){
+  //e.preventDefault();
+  console.log(command)
+  request.open('GET', baseURL + "/command?command="+command, false);  // `false` makes the request synchronous
+  request.send(null);
+}
+
 function App() {
 
   const [message, setMessage] = useState({});
@@ -11,7 +20,6 @@ function App() {
   useEffect(()=>{
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
-      console.log("SUCCESS", data);
       setMessage(data);
     })
     .catch((error) => console.log(error))
@@ -19,7 +27,6 @@ function App() {
 
   fetch(baseURL + "/db?table=test").then((response) => response.json())
     .then((data) => {
-      console.log("SUCCESS", data);
       setList(data.db);
     })
     .catch((error) => console.log(error))
@@ -27,18 +34,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h3>Light Switch</h3>
+        <div class="switch">
+          <button onClick={e => postman(e,"ON")}>ON</button>
+          <button onClick={e => postman(e,"OFF")}>OFF</button>
+        </div>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         {/*Sample Importation of data*/}
         <p>
           Flask says  <strong>{ message.test }</strong>

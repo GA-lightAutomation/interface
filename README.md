@@ -20,7 +20,7 @@ Run `npm install`
 Run:
 
 `pip install -r requirements.txt`<br>
-`flask run`
+`flask run --host=0.0.0.0`
 
 ## Database
 <strong>Prerequisites</strong>: sqlite(3)

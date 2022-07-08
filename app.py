@@ -2,6 +2,9 @@ import os
 from flask import Flask, send_from_directory, request
 from flask_cors import CORS
 import sqlite3
+import requests
+
+url = 'http://192.168.100.93/'
 
 con = sqlite3.connect('door.db', check_same_thread=False)
 cur = con.cursor()
@@ -29,8 +32,15 @@ def test():
 @app.route("/db")
 def testDB():
     data = request.args
-    print(data)
     texts = []
     for row in cur.execute(f"SELECT * FROM {data.get('table')}"):
         texts.append(row[0])
     return {"db":texts}
+
+@app.route("/command")
+def command():
+    data = request.args
+    headers = {'Command':data.get('command')}
+    r = requests.get(url,headers=headers)
+    print(r.text)
+    return {"response":"OK"}
