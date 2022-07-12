@@ -44,3 +44,9 @@ def command():
     r = requests.get(url,headers=headers)
     print(r.text)
     return {"response":"OK"}
+
+@app.route("/esp")
+def esp():
+    data = request.args
+    print("##\n",data)
+    return {'response':'OK'}

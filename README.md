@@ -5,7 +5,8 @@
 ### Tech Stacks
 React<br>
 Flask<br>
-SQlite(3)
+SQlite(3)<br>
+ngrok
 ### Frontend
 <strong>Prerequisites</strong>: Node.js, npm/npx/yarn
 
@@ -28,3 +29,7 @@ Run:
 To open database run
 
 ` sqlite3 door.db `
+
+
+## Make server visible on the internet
+`ngrok http 5000  `
