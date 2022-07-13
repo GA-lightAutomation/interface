@@ -4,7 +4,7 @@ from flask_cors import CORS
 import sqlite3
 import requests
 
-url = 'http://192.168.100.93/'
+url = 'http://192.168.0.105/' #IP for ESP32
 
 con = sqlite3.connect('door.db', check_same_thread=False)
 cur = con.cursor()
@@ -45,8 +45,23 @@ def command():
     print(r.text)
     return {"response":"OK"}
 
-@app.route("/esp")
+@app.route("/esp") #receive requests from ESP32
 def esp():
     data = request.args
-    print("##\n",data)
+    authenticate(data.get('command'),data.get('payload'))
     return {'response':'OK'}
+
+def authenticate(access,key): #check if user credentials exist
+    user=0
+    for row in cur.execute(f"SELECT * FROM users WHERE {access}='{key}'"):
+        print(row)
+        user+=1
+    if user:
+        headers = {'Command':"authenticate"}
+        r = requests.get(url,headers=headers)
+        print(r.text)
+    else :
+        print("DENIED ACCESS")
+        headers = {'Command':"denied"}
+        r = requests.get(url,headers=headers)
+        print(r.text)

@@ -13,7 +13,7 @@ cur = con.cursor()
 
 def insert(data):
     print(f"inserting {data} into test")
-    cur.execute("INSERT INTO test (text) VALUES (?)",(data,))
+    cur.execute("INSERT INTO users (firstName,lastName,rfid,keypad) VALUES (?,?,?,?)",("Bruce","Wayne",567823549,"bats"))
     con.commit()
 
 insert("me")
@@ -23,7 +23,7 @@ def retrieve(table):
     for row in cur.execute(f"SELECT * FROM {table}"):
         print(row)
 
-retrieve('test')
+retrieve('users')
 
 def delete(table):
     print("Deleting data from:",table,'\n')
