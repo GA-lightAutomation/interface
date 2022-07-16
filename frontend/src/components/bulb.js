@@ -2,7 +2,7 @@
 import '../styles/styles.css';
 import React, { useState } from 'react';
 import bulbOn from './Images/idea (5).png'; 
-
+import { postman } from '../data';
 
 function Bulb(){ 
     // Hooks 
@@ -15,6 +15,7 @@ function Bulb(){
     function lightBulbOn() {  
         setLoading(true) 
         setHeadlineOn(true)
+        postman('ON');
         
         setTimeout( () => {
            setLoading(false) 
@@ -28,6 +29,7 @@ function Bulb(){
     function lightBulbOff() {
         setLoading(true)
         setHeadlineOff(true)  
+        postman('OFF');
         
         setTimeout( () => {
            setLoading(false) 

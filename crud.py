@@ -13,7 +13,7 @@ cur = con.cursor()
 
 def insert(data):
     print(f"inserting {data} into test")
-    cur.execute("INSERT INTO users (firstName,lastName,rfid,keypad) VALUES (?,?,?,?)",("Bruce","Wayne",567823549,"bats"))
+    cur.execute("INSERT INTO users (firstName,lastName,rfid,keypad) VALUES (?,?,?,?)",("Bruce","Wayne",2281054330,"bats"))
     con.commit()
 
 insert("me")

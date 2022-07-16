@@ -4,7 +4,7 @@ from flask_cors import CORS
 import sqlite3
 import requests
 
-url = 'http://192.168.0.105/' #IP for ESP32
+url = 'http://192.168.100.94/' #IP for ESP32
 
 con = sqlite3.connect('door.db', check_same_thread=False)
 cur = con.cursor()
