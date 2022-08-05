@@ -1,15 +1,17 @@
 import './App.css';
 import React from 'react';
-import Bulb from './components/bulb';
-import Navbar from './components/nav';
+import Light from './components/Light';
+import Navbar from './components/Navbar'
+import {appTheme} from './Theme/Theme'; 
+import { ThemeProvider } from '@mui/material';
 
 function App() {
 
   return (
-    <React.Fragment>
-      <Navbar/>
-      <Bulb/>
-    </React.Fragment>
+    <ThemeProvider theme={appTheme}>
+        <Navbar/> 
+        <Light /> 
+    </ThemeProvider>
   );
 }
 
