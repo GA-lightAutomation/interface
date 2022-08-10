@@ -4,7 +4,7 @@ from flask_cors import CORS
 import sqlite3
 import requests
 
-url = 'http://192.168.100.94/' #IP for ESP32
+url = 'http://192.168.100.105/' #IP for ESP32
 
 con = sqlite3.connect('door.db', check_same_thread=False)
 cur = con.cursor()
@@ -12,8 +12,7 @@ cur = con.cursor()
 app = Flask(__name__, static_folder='frontend/build')
 
 if __name__ == '__main__':
-    context = ('server.crt', 'server.key')#certificate and key files
-    app.run(use_reloader=True, port=5000, threaded=True,ssl_context=context)
+    app.run(use_reloader=True, port=5000, threaded=True)
 
 CORS(app)
 # Serve React App
